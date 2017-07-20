@@ -2,7 +2,7 @@
 	"name": "dedup",
 	"description": "Close duplicate tabs when a tab with the same url is opened",
 	"manifest_version": 2,
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"background": {
 		"scripts": ["background/background.js"]
 	},

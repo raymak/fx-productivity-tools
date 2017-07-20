@@ -7,9 +7,14 @@ browser.tabs.onUpdated.addListener(function(tabId, info, tab){
 
   console.log(info.url)
 
-  browser.tabs.query({
-    url: info.url
-  }).then(tabs => browser.tabs.remove(
-    tabs.map(t => t.id)
-    .filter(id => id != tabId)))
+  browser.tabs.query({})
+    .then((tabs) => {
+        browser.tabs.remove(tabs
+            .filter(t => haveIdenticalUrl(t, tab) && t.id != tabId)
+            .map(t => t.id))
+    })
 })
+
+function haveIdenticalUrl(t1, t2){
+  return t1.url.replace(/\/$/g, '') == t2.url.replace(/\/$/g, '')
+}
